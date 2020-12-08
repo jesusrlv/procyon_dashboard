@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 
 // if (isset($_SESSION['usr'])) {
 //     if($_SESSION['perfil']==1){
@@ -25,14 +25,14 @@
     // die();
 // }
 
-// include('prcd/conn.php');
+include('prcd/conn.php');
 
 // variables de sesión
 
-    // $usuario = $_SESSION['usr'];
-    // $id = $_SESSION['id'];
-    // $perfil = $_SESSION['perfil'];
-    // $nombre = $_SESSION['nombre'];
+    $usuario = $_SESSION['usr'];
+    $id = $_SESSION['id'];
+    $perfil = $_SESSION['perfil'];
+    $nombre = $_SESSION['nombre'];
 
 ?>
 
@@ -123,7 +123,7 @@
         <ul class="nav flex-column">
  
            <li class="nav-item">
-            <a class="nav-link active" href="dashboard.html">
+            <a class="nav-link active" href="dashboard.php">
               <!-- <span data-feather="home"></span> -->
               <i class="fas fa-laptop-house"></i> 
               Dashboard <span class="sr-only">(current)</span>
@@ -139,14 +139,14 @@
           </h6>
 
           <li class="nav-item">
-            <a class="nav-link" href="trimestre1.php">
+            <a class="nav-link" href="revision_bitacora.php">
               <!-- <span data-feather="layers"></span> -->
                
               <i class="fas fa-file-alt"></i> Revisión
             </a>
           </li>
          <li class="nav-item">
-            <a class="nav-link" href="trimestre2.php">
+            <a class="nav-link" href="agregar_bitacora.php">
               <!-- <span data-feather="layers"></span> -->
               <i class="fas fa-file-upload"></i> Cargar documento
             </a>
@@ -173,15 +173,21 @@
         </h6>
         <ul class="nav flex-column mb-2">
           <li class="nav-item">
-            <a class="nav-link" href="modificar.php">
+            <a class="nav-link" href="agregar_trabajador.php">
               <!-- <span data-feather="file-text"></span> -->
               <i class="fas fa-user-plus"></i> Agregar Trabajador
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="modificar.php">
+            <a class="nav-link" href="agregar_cliente.php">
               <!-- <span data-feather="file-text"></span> -->
               <i class="fas fa-building"></i> Agregar Empresa
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="agregar_usuarios.php">
+              <!-- <span data-feather="file-text"></span> -->
+              <i class="fas fa-user-plus"></i> Agregar Usuario
             </a>
           </li>
           
@@ -218,30 +224,31 @@
 
       <div class="jumbotron jumbotron-fluid " style="background-color:#f8f9fa; width:100%; box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); margin-top:100px; padding:45px;">
         <div class="container-fluid">
+        <form action="prcd/proceso_agregar_cliente.php" method="POST">
           <!-- <h1 class="display-4">Bienvenido al sistema de bitácoras</h1> -->
           <p><h2>Registro</h2></p>
           <hr class="my-4">
 
-              <div class="input-group mb-3 w-50">
+              <div class="input-group mb-3 w-75">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon3">Nombre empresa</span>
                 </div>
-                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="nombre_empresa" require>
               </div>
               
-              <div class="input-group mb-3 w-50">
+              <div class="input-group mb-3 w-75">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon3">Domicilio</span>
                 </div>
-                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="domicilio" require>
               </div>
 
-              <div class="input-group mb-3 w-50">
+              <!-- <div class="input-group mb-3 w-50">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon3">Tipo de sangre</span>
                 </div>
-                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-              </div>
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="tipo_sangre" require>
+              </div> -->
 
             
               <p> <h5>Fecha de registro</h5></p>
@@ -250,7 +257,7 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="inputGroupSelect01">Día</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01">
+                <select class="custom-select" id="inputGroupSelect01" name="dia" require>
                   <option selected>Selecionar...</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -290,11 +297,20 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="inputGroupSelect01">Mes</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01">
-                  <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                <select class="custom-select" id="inputGroupSelect01" name="mes" require>
+                  <option selected>Seleccionar...</option>
+                  <option value="1">Enero</option>
+                  <option value="2">Febrero</option>
+                  <option value="3">Marzo</option>
+                  <option value="4">Abril</option>
+                  <option value="5">Mayo</option>
+                  <option value="6">Junio</option>
+                  <option value="7">Julio</option>
+                  <option value="8">Agosto</option>
+                  <option value="9">Septiembre</option>
+                  <option value="10">Octubre</option>
+                  <option value="11">Noviembre</option>
+                  <option value="12">Diciembre</option>
                 </select>
               </div>
 
@@ -302,21 +318,27 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="inputGroupSelect01">Año</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01">
-                  <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                <select class="custom-select" id="inputGroupSelect01" name="annio" require>
+                  <option selected>Seleccionar...</option>
+                  <option value="1">2020</option>
+                  <option value="2">2021</option>
+                  <option value="3">2022</option>
+                  <option value="4">2023</option>
+                  <option value="5">2024</option>
+                  <option value="6">2025</option>
+                  <option value="7">2026</option>
+                  <option value="8">2027</option>
                 </select>
               </div>
 
-              <p> <h5>Fotografía</h5></p>
+              <!-- <p> <h5>Fotografía</h5></p>
               <p><img src="img/img_profile.png" alt="..." class="img-thumbnail" width="350px" heigth="70px"></p>
-              <button type="button" class="btn btn-primary btn-sm"><i class="far fa-id-badge"></i> Cargar imagen</button>
+              <button type="button" class="btn btn-primary btn-sm"><i class="far fa-id-badge"></i> Cargar imagen</button> -->
 
           <hr class="my-4">
-          <a class="btn btn-primary btn-lg" href="#" role="button"> <i class="far fa-save"></i> Registrar trabajador</a>
-          <a class="btn btn-danger btn-lg" href="#" role="button"> <i class="fas fa-times"></i> Cancelar</a>
+          <button class="btn btn-primary btn-lg" role="submit"> <i class="far fa-save"></i> Registrar empresa</button>
+          <a class="btn btn-danger btn-lg" href="javascript:history.back()" role="button"> <i class="fas fa-times"></i> Cancelar</a>
+          </form>
         </div>
       </div>
 
